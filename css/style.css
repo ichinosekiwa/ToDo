@@ -92,6 +92,27 @@ button {
   width: 100%;
   display: block;
 }
+.modal p {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.modal .modal__close {
+  font-size: 32px;
+  border: none;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.modal .modal__close:hover {
+  font-size: 32px;
+  border: none;
+  background-color: #f4f4f4;
+}
 .modal__create {
   background-color: #fff;
   padding: 1rem 1.25rem;
@@ -108,7 +129,7 @@ button {
   margin-bottom: 1rem;
   border: 1px solid #33333350;
 }
-.modal button {
+.modal .modal__create__btn {
   padding: 4px;
   width: 100px;
   border: none;
