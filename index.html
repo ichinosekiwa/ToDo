@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>My Stylish ToDo List</h1>
+            <div class="btn">
+                <button class="btn__add">New ToDo</button>
+            </div>
+            <div class="todo">
+                <ul class="todo__list">
+                    <li class="todo__list__item"><input id="checkbox" class="checkbox" type="checkbox"><label
+                            for="checkbox">犬の散歩をする</label>
+                        <div class="todo__list__item-btns">
+                            <button class="icon-edit"><img src="image/pen.png"></button>
+                            <button class="icon-trash"><img src="image/trash.png"></button>
+                        </div>
+                    </li>
+                    <li class="todo__list__item"><input id="checkbox" class="checkbox" type="checkbox"><label
+                            for="checkbox">犬の散歩をする</label></li>
+                    <li class="todo__list__item"><input id="checkbox" class="checkbox" type="checkbox"><label
+                            for="checkbox">犬の散歩をする</label></li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal active">
+            <div class="modal__create">
+                <h2 class="modal__create__title">Create ToDo</h2>
+                <div>
+                    <label for="content">内容：</label>
+                    <input class="required maxlength" type="text" id="content" name="content" data-length="20">
+                    <button class="modal__create__btn">作成する</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
