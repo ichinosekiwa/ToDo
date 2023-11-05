@@ -21,13 +21,16 @@ main {
   display: block;
   position: relative;
 }
+main.active {
+  background-color: #00000025;
+}
 button {
   cursor: pointer;
 }
 .container {
   min-height: 100vh;
-  margin: 56px auto 0;
-  padding: 16px;
+  margin: 0 auto;
+  padding: 40px 16px 16px;
   max-width: 600px;
   width: 100%;
   text-align: center;
@@ -78,14 +81,17 @@ button {
   width: 24px;
   height: 24px;
 }
+input[type='checkbox'] {
+  margin-right: 8px;
+}
 
-/* モーダル TODO追加 */
+/* モーダル TODO 作成 */
 .modal {
   display: none;
 }
 .modal.active {
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
   max-width: 400px;
@@ -101,7 +107,7 @@ button {
   margin-bottom: 24px;
 }
 .modal .modal__close {
-  font-size: 32px;
+  font-size: 24px;
   border: none;
   background-color: transparent;
   width: 32px;
@@ -109,7 +115,6 @@ button {
   border-radius: 50%;
 }
 .modal .modal__close:hover {
-  font-size: 32px;
   border: none;
   background-color: #f4f4f4;
 }
@@ -130,6 +135,31 @@ button {
   border: 1px solid #33333350;
 }
 .modal .modal__create__btn {
+  padding: 4px;
+  width: 100px;
+  border: none;
+  background-color: pink;
+  margin: 0 auto;
+}
+
+/* モーダル TODO 編集 */
+.modal__edit {
+  background-color: #fff;
+  padding: 1rem 1.25rem;
+}
+.modal__edit h2 {
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+.modal label {
+  padding-bottom: 8px;
+}
+.modal input {
+  padding: 5px;
+  margin-bottom: 1rem;
+  border: 1px solid #33333350;
+}
+.modal .modal__edit__btn {
   padding: 4px;
   width: 100px;
   border: none;

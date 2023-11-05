@@ -31,14 +31,26 @@
                 </ul>
             </div>
         </div>
-        <div class="modal active">
+        <!-- モーダル TODO 作成 -->
+        <div class="modal ">
             <div class="modal__create">
                 <p class="modal__create__title">Create ToDo<button class="modal__close">×</button></p>
-
                 <div>
                     <label for="content">内容：</label>
                     <input class="required maxlength" type="text" id="content" name="content" data-length="20">
                     <button class="modal__create__btn">作成する</button>
+                </div>
+            </div>
+        </div>
+        <!-- モーダル TODO 編集 -->
+        <div class="modal">
+            <div class="modal__edit">
+                <p class="modal__edit__title">Edit ToDo<button class="modal__close">×</button></p>
+
+                <div>
+                    <label for="content">内容：</label>
+                    <input class="required maxlength" type="text" id="content" name="content" data-length="20">
+                    <button class="modal__edit__btn">更新する</button>
                 </div>
             </div>
         </div>
