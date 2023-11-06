@@ -1,3 +1,2 @@
-// modal
-import { modal } from './modal.js';
-console.log(modal);
+// list
+import { list } from './list.js';
