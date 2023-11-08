@@ -1,6 +1,6 @@
 // ToDoを追加する
 
-export const list = 'main';
+export const AddTodo = 'main';
 
 // 作成するボタンクリックでTodo追加
 const createBtn = document.querySelector('.modal__create__btn');
