@@ -1,28 +1,55 @@
-// ToDoを追加する
+// addTodo.js
 
-export const AddTodo = 'main';
+export function AddTodo() {
+  // エラーを表示
+  const createError = (item, errorMessage) => {
+    const errorText = document.createElement('span');
+    errorText.classList.add('error');
+    errorText.textContent = errorMessage;
+    item.parentNode.appendChild(errorText);
+  };
 
-// 作成するボタンクリックでTodo追加
-const createBtn = document.querySelector('.modal__create__btn');
-createBtn.addEventListener('click', function () {
-  const addTodoItem = document.querySelector('#content');
+  // 既存のエラーを削除
+  const removeError = (item) => {
+    const removeErrorSpan = item.parentNode.querySelector('.error');
+    if (removeErrorSpan) {
+      removeErrorSpan.remove();
+    }
+  };
 
-  if (addTodoItem.value) {
-    const todoItem = document.createElement('li');
-    todoItem.classList.add('todo__list__item');
-    todoItem.innerHTML = `
-    <input id="checkbox" class="checkbox" type="checkbox">
-    <label for="checkbox">${addTodoItem.value}</label>
-    <div class="todo__list__item-btns">
-    <button class="icon-edit"><img src="image/pen.png"></button>
-    <button class="icon-trash"><img src="image/trash.png"></button>
-    </div>
-    `;
+  // 入力した文字数を検証
+  const vaidateItem = document.querySelectorAll('.maxlength');
+  vaidateItem.forEach((item) => {
+    const maxlength = item.getAttribute('data-maxlength');
+    if (item.value.length > maxlength) {
+      createError(item, 'ERROR：' + maxlength + '文字以内で入力');
+      return false;
+    } else {
+      removeError(item);
+    }
+  });
 
-    // 親要素<ul>に入力したTodoを追加
-    const todoList = document.querySelector('.todo__list');
-    todoList.appendChild(todoItem);
-  }
-  // 最後に入力欄を空にする
-  addTodoItem.value = '';
-});
+  const createBtn = document.querySelector('.modal__create__btn');
+  createBtn.addEventListener('click', function () {
+    const addTodoItem = document.querySelector('#content');
+
+    if (addTodoItem) {
+      const todoItem = document.createElement('li');
+      todoItem.classList.add('todo__list__item');
+      todoItem.innerHTML = `
+        <input id="checkbox" class="checkbox" type="checkbox">
+        <label for="checkbox">${addTodoItem.value}</label>
+        <div class="todo__list__item-btns">
+          <button class="icon-edit"><img src="image/pen.png"></button>
+          <button class="icon-trash"><img src="image/trash.png"></button>
+        </div>
+      `;
+
+      // 親要素<ul>に入力したTodoを追加
+      const todoList = document.querySelector('.todo__list');
+      todoList.appendChild(todoItem);
+    }
+    // 入力欄を空にする
+    addTodoItem.value = '';
+  });
+}
