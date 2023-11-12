@@ -21,9 +21,7 @@ main {
   display: block;
   position: relative;
 }
-main.active {
-  background-color: #00000025;
-}
+
 button {
   cursor: pointer;
 }
@@ -88,15 +86,13 @@ input[type='checkbox'] {
 /* モーダル TODO 作成 */
 .modal {
   display: none;
-}
-.modal.active {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 400px;
-  width: 100%;
-  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #33333350;
+  z-index: 5;
 }
 .modal p {
   font-size: 20px;
@@ -106,22 +102,34 @@ input[type='checkbox'] {
   align-items: center;
   margin-bottom: 24px;
 }
-.modal .modal__close {
+.modal__close {
   font-size: 24px;
-  border: none;
-  background-color: transparent;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  font-weight: 400;
+  transition: 0.3s;
+  cursor: pointer;
 }
-.modal .modal__close:hover {
-  border: none;
-  background-color: #f4f4f4;
+.modal__close:hover {
+  color: #33333380;
 }
 .modal__create {
   background-color: #fff;
+  margin: 20% auto;
   padding: 1rem 1.25rem;
+  max-width: 400px;
+  width: 100%;
+  animation-name: modal;
+  animation-duration: 0.8s;
 }
+@keyframes modal {
+  from {
+    transform: translateY(-100%);
+    transform: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .modal__create h2 {
   font-size: 20px;
   margin-bottom: 1rem;

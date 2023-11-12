@@ -1,6 +1,20 @@
-// addTodo.js
-
 export function AddTodo() {
+  // modalの表示・非表示
+  const btnOpen = document.querySelector('.btn__add');
+  const btnClose = document.querySelector('.modal__close');
+  const modal = document.querySelector('.modal');
+
+  btnOpen.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+  btnClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  document.addEventListener('click', (e) => {
+    if (e.target == modal) {
+      modal.style.display = 'none';
+    }
+  });
   // エラーを表示
   const createError = (item, errorMessage) => {
     removeError(item);
