@@ -33,12 +33,13 @@ export function AddTodo() {
 
   const createBtn = document.querySelector('.modal__create__btn');
   createBtn.addEventListener('click', function () {
-    let haveError = false;
     const addTodoItem = document.querySelector('#content-create');
+    let haveError = false;
     // 入力した文字数を検証
     const validateItems = document.querySelectorAll('.maxlength');
     validateItems.forEach((item) => {
       const maxlength = item.getAttribute('data-maxlength');
+      // 空白の場合の検証
       if (item.value.trim() === '') {
         createError(item, 'ERROR：入力してください');
         haveError = true;
@@ -47,25 +48,28 @@ export function AddTodo() {
         haveError = true;
       } else {
         removeError(item);
+
+        if (!haveError && addTodoItem.value.trim() !== '') {
+          const todoItem = document.createElement('li');
+          todoItem.classList.add('todo__list__item');
+          todoItem.innerHTML = `
+      <input id="checkbox" class="checkbox" type="checkbox">
+      <label for="checkbox">${addTodoItem.value}</label>
+      <div class="todo__list__item-btns">
+        <button class="icon-edit"><img src="image/pen.png"></button>
+        <button class="icon-trash"><img src="image/trash.png"></button>
+      </div>
+    `;
+          // 親要素<ul>に入力したTodoを追加
+          const todoList = document.querySelector('.todo__list');
+          todoList.appendChild(todoItem);
+          // 入力欄を空にする
+          addTodoItem.value = '';
+        }
+        createBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
       }
     });
-
-    if (haveError && addTodoItem.value) {
-      const todoItem = document.createElement('li');
-      todoItem.classList.add('todo__list__item');
-      todoItem.innerHTML = `
-        <input id="checkbox" class="checkbox" type="checkbox">
-        <label for="checkbox">${addTodoItem.value}</label>
-        <div class="todo__list__item-btns">
-          <button class="icon-edit"><img src="image/pen.png"></button>
-          <button class="icon-trash"><img src="image/trash.png"></button>
-        </div>
-      `;
-      // 親要素<ul>に入力したTodoを追加
-      const todoList = document.querySelector('.todo__list');
-      todoList.appendChild(todoItem);
-      // 入力欄を空にする
-      addTodoItem.value = '';
-    }
   });
 }
