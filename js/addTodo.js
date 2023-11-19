@@ -48,11 +48,12 @@ export function AddTodo() {
         haveError = true;
       } else {
         removeError(item);
+      }
 
-        if (!haveError && addTodoItem.value.trim() !== '') {
-          const todoItem = document.createElement('li');
-          todoItem.classList.add('todo__list__item');
-          todoItem.innerHTML = `
+      if (!haveError && addTodoItem.value.trim() !== '') {
+        const todoItem = document.createElement('li');
+        todoItem.classList.add('todo__list__item');
+        todoItem.innerHTML = `
       <input id="checkbox" class="checkbox" type="checkbox">
       <label for="checkbox">${addTodoItem.value}</label>
       <div class="todo__list__item-btns">
@@ -60,15 +61,12 @@ export function AddTodo() {
         <button class="icon-trash"><img src="image/trash.png"></button>
       </div>
     `;
-          // 親要素<ul>に入力したTodoを追加
-          const todoList = document.querySelector('.todo__list');
-          todoList.appendChild(todoItem);
-          // 入力欄を空にする
-          addTodoItem.value = '';
-        }
-        createBtn.addEventListener('click', () => {
-          modal.style.display = 'none';
-        });
+        // 親要素<ul>に入力したTodoを追加
+        const todoList = document.querySelector('.todo__list');
+        todoList.appendChild(todoItem);
+        // 入力欄を空にする
+        addTodoItem.value = '';
+        modal.style.display = 'none';
       }
     });
   });
