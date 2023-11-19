@@ -4,8 +4,17 @@ export function AddTodo() {
   const btnClose = document.querySelector('.modal__close');
   const modal = document.querySelector('.modal');
 
+  // ２回目以降モーダルを開いたときにエラーをリセット(モーダルを初期状態にする)
+  const resetErrorModal = () => {
+    const validateItems = document.querySelectorAll('.maxlength');
+    validateItems.forEach((item) => {
+      removeError(item);
+    });
+  };
   btnOpen.addEventListener('click', () => {
     modal.style.display = 'block';
+    // エラーをリセット
+    resetErrorModal();
   });
   btnClose.addEventListener('click', () => {
     modal.style.display = 'none';
@@ -15,6 +24,7 @@ export function AddTodo() {
       modal.style.display = 'none';
     }
   });
+
   // エラーを表示
   const createError = (item, errorMessage) => {
     removeError(item);
