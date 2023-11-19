@@ -17,35 +17,37 @@
             </div>
             <div class="todo">
                 <ul class="todo__list">
-                    <li class="todo__list__item"><input id="checkbox" class="checkbox" type="checkbox"><label
-                            for="checkbox">犬の散歩をする</label>
+                    <!-- <li class="todo__list__item"><input id="checkbox" class="checkbox" type="checkbox"><label
+                            for="checkbox"></label>
                         <div class="todo__list__item-btns">
                             <button class="icon-edit"><img src="image/pen.png"></button>
                             <button class="icon-trash"><img src="image/trash.png"></button>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
         <!-- モーダル TODO 作成 -->
-        <div class="modal active">
+        <div class="modal">
             <div class="modal__create">
-                <p class="modal__create__title">Create ToDo<button class="modal__close">×</button></p>
+                <p class="modal__create__title">Create ToDo<span class="modal__close">×</span></p>
                 <div>
                     <label for="content">内容：</label>
-                    <input class="required maxlength" type="text" id="content" name="content" data-length="20">
+                    <input class="create maxlength" type="text" id="content-create" name="content" data-maxlength="20"
+                        required placeholder="買い物に行く">
                     <button class="modal__create__btn">作成する</button>
                 </div>
             </div>
         </div>
         <!-- モーダル TODO 編集 -->
-        <div class="modal">
+        <div class="modal-2">
             <div class="modal__edit">
-                <p class="modal__edit__title">Edit ToDo<button class="modal__close">×</button></p>
+                <p class="modal__edit__title">Edit ToDo<span class="modal__close">×</span></p>
 
                 <div>
                     <label for="content">内容：</label>
-                    <input class="required maxlength" type="text" id="content" name="content" data-length="20">
+                    <input class="edit maxlength" type="text" id="content-edit" name="content" data-maxlength="20"
+                        required placeholder="洗濯をする">
                     <button class="modal__edit__btn">更新する</button>
                 </div>
             </div>
