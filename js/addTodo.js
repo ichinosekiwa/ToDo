@@ -1,5 +1,5 @@
 export function AddTodo() {
-  // modalの表示・非表示
+  // TODO　作成機能
   const btnOpen = document.querySelector('.btn__add');
   const btnClose = document.querySelector('.modal__close');
   const modal = document.querySelector('.modal');
@@ -80,5 +80,17 @@ export function AddTodo() {
         modal.style.display = 'none';
       }
     });
+  });
+
+  // TODO　編集機能
+  const editBtnOpen = document.querySelector('.icon-edit');
+  const modalEdit = document.querySelector('.modal-2');
+  const editBtnClose = document.querySelector('.modal__close');
+
+  editBtnOpen.addEventListener('click', () => {
+    modalEdit.style.display = 'block';
+  });
+  editBtnClose.addEventListener('click', () => {
+    modalEdit.style.display = 'none';
   });
 }
