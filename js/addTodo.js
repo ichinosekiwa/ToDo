@@ -71,6 +71,7 @@ export function AddTodo() {
         <button class="icon-trash"><img src="image/trash.png"></button>
       </div>
     `;
+
         // 親要素<ul>に入力したTodoを追加
         const todoList = document.querySelector('.todo__list');
         todoList.appendChild(todoItem);
