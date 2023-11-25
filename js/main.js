@@ -13,5 +13,7 @@ const createBtn = document.querySelector('.modal__create__btn');
 createBtn.addEventListener('click', AddTodo);
 
 // Todo編集のモーダル　表示非表示
-editBtnOpen = document.querySelector('.icon-edit');
-editBtnOpen.addEventListener('click', EditTodo);
+const todoList = document.querySelector('.todo__list');
+const modalEdit = document.querySelector('.modal-2');
+todoList.addEventListener('click', AddTodo);
+modalEdit.addEventListener('click', AddTodo);

@@ -83,14 +83,20 @@ export function AddTodo() {
   });
 
   // TODO　編集機能
-  const editBtnOpen = document.querySelector('.icon-edit');
-  const modalEdit = document.querySelector('.modal-2');
-  const editBtnClose = document.querySelector('.modal__close');
-
-  editBtnOpen.addEventListener('click', () => {
-    modalEdit.style.display = 'block';
+  const todoList = document.querySelector('.todo__list');
+  todoList.addEventListener('click', function (event) {
+    if (event.target.classList.contains('icon-edit')) {
+      // 編集モーダルを表示
+      const modalEdit = document.querySelector('.modal-2');
+      modalEdit.style.display = 'block';
+    }
   });
-  editBtnClose.addEventListener('click', () => {
-    modalEdit.style.display = 'none';
-  });
+  // const editModalClose = document.querySelector('.modal__close');
+  // editModalClose.addEventListener('click', function (event) {
+  //   if (event.target.classList.contain('.modal__close')) {
+  //     // 編集モーダルを閉じる
+  //     const modalEdit = document.querySelector('.modal-2');
+  //     modalEdit.style.display = 'none';
+  //   }
+  // });
 }
