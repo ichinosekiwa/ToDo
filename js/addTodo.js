@@ -87,16 +87,23 @@ export function AddTodo() {
   todoList.addEventListener('click', function (event) {
     if (event.target.classList.contains('icon-edit')) {
       // 編集モーダルを表示
-      const modalEdit = document.querySelector('.modal-2');
+      const modalEdit = document.querySelector('.modal_edit');
       modalEdit.style.display = 'block';
     }
   });
-  // const editModalClose = document.querySelector('.modal__close');
-  // editModalClose.addEventListener('click', function (event) {
-  //   if (event.target.classList.contain('.modal__close')) {
-  //     // 編集モーダルを閉じる
-  //     const modalEdit = document.querySelector('.modal-2');
-  //     modalEdit.style.display = 'none';
-  //   }
-  // });
+  const modalEdit = document.querySelector('.modal_edit');
+  const btnEditClose = document.querySelector('.modal__edit__close');
+  btnEditClose.addEventListener('click', () => {
+    // 編集モーダルを閉じる
+    modalEdit.style.display = 'none';
+  });
+  /* -------------------
+  　　　　　　謎↓
+   ------------------- */
+  document.addEventListener('click', (e) => {
+    // 編集モーダル領域外をクリックしても閉じる
+    if (e.target.classList.contains('modal_edit')) {
+      modalEdit.style.display = 'none';
+    }
+  });
 }

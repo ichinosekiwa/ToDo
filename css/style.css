@@ -87,7 +87,7 @@ input[type='checkbox'] {
 
 /* モーダル TODO 作成 */
 .modal,
-.modal-2 {
+.modal_edit {
   display: none;
   position: fixed;
   top: 0;
@@ -98,7 +98,7 @@ input[type='checkbox'] {
   z-index: 5;
 }
 .modal p,
-.modal-2 p {
+.modal_edit p {
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -106,13 +106,15 @@ input[type='checkbox'] {
   align-items: center;
   margin-bottom: 24px;
 }
-.modal__close {
+.modal__close,
+.modal__edit__close {
   font-size: 24px;
   font-weight: 400;
   transition: 0.3s;
   cursor: pointer;
 }
-.modal__close:hover {
+.modal__close:hover,
+.modal__edit__close:hover {
   color: #33333380;
 }
 .modal__create {
@@ -163,15 +165,15 @@ input[type='checkbox'] {
   font-size: 20px;
   margin-bottom: 1rem;
 }
-.modal-2 label {
+.modal_edit label {
   padding-bottom: 8px;
 }
-.modal-2 input {
+.modal_edit input {
   padding: 5px;
   margin-bottom: 1rem;
   border: 1px solid #33333350;
 }
-.modal-2 .modal__edit__btn {
+.modal_edit .modal__edit__btn {
   padding: 4px;
   width: 100px;
   border: none;
