@@ -1,5 +1,7 @@
 export function AddTodo() {
-  // TODO　作成機能
+  /* --------------------------------------
+  　　　　　　TODO　作成
+-------------------------------------- */
   const btnOpen = document.querySelector('.btn__add');
   const btnClose = document.querySelector('.modal__close');
   const modal = document.querySelector('.modal');
@@ -82,15 +84,41 @@ export function AddTodo() {
     });
   });
 
-  // TODO　編集機能
+  /* --------------------------------------
+  　　　　　　TODO　編集
+-------------------------------------- */
   const todoList = document.querySelector('.todo__list');
+  let editedTodoItem;
+
   todoList.addEventListener('click', function (event) {
     if (event.target.classList.contains('icon-edit')) {
       // 編集モーダルを表示
       const modalEdit = document.querySelector('.modal_edit');
+      const editContentUpdate = modalEdit.querySelector('#content-edit');
+      // 現在のTODOを取得
+      const todoValue = event.target.parentElement.previousElementSibling;
+      editContentUpdate.value = todoValue.textContent;
+      resetErrorModal();
       modalEdit.style.display = 'block';
+      // 編集したTODOを保存
+      editedTodoItem = {
+        label: todoValue,
+        modal: modalEdit,
+      };
     }
   });
+
+  const btnEditSave = document.querySelector('.modal__edit__btn');
+  btnEditSave.addEventListener('click', function () {
+    const editContentInput = document.querySelector('#content-edit');
+    const trimmedContent = editContentInput.value.trim();
+    // 入力が空でない場合に保存
+    if (trimmedContent !== '') {
+      editedTodoItem.label.textContent = trimmedContent;
+      editedTodoItem.modal.style.display = 'none';
+    }
+  });
+
   const modalEdit = document.querySelector('.modal_edit');
   const btnEditClose = document.querySelector('.modal__edit__close');
   btnEditClose.addEventListener('click', () => {
