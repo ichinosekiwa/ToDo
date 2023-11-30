@@ -102,20 +102,19 @@ export function AddTodo() {
       modalEdit.style.display = 'block';
       // 編集したTODOを保存
       editedTodoItem = {
-        label: todoValue,
+        item: todoValue,
         modal: modalEdit,
       };
-    }
-  });
-
-  const btnEditSave = document.querySelector('.modal__edit__btn');
-  btnEditSave.addEventListener('click', function () {
-    const editContentInput = document.querySelector('#content-edit');
-    const trimmedContent = editContentInput.value.trim();
-    // 入力が空でない場合に保存
-    if (trimmedContent !== '') {
-      editedTodoItem.label.textContent = trimmedContent;
-      editedTodoItem.modal.style.display = 'none';
+      const btnEditSave = document.querySelector('.modal__edit__btn');
+      btnEditSave.addEventListener('click', function () {
+        const editContentInput = document.querySelector('#content-edit');
+        const editedContent = editContentInput.value.trim();
+        // 入力が空でない場合に保存
+        if (editedContent !== '') {
+          editedTodoItem.item.textContent = editedContent;
+          editedTodoItem.modal.style.display = 'none';
+        }
+      });
     }
   });
 
