@@ -69,8 +69,8 @@ export function AddTodo() {
       <input id="checkbox" class="checkbox" type="checkbox">
       <label for="checkbox">${addTodoItem.value}</label>
       <div class="todo__list__item-btns">
-        <button class="icon-edit"><img src="image/pen.png"></button>
-        <button class="icon-trash"><img src="image/trash.png"></button>
+        <img class="icon-edit" src="image/pen.png">
+        <img class="icon-trash" src="image/trash.png">
       </div>
     `;
 
@@ -90,7 +90,7 @@ export function AddTodo() {
   const todoList = document.querySelector('.todo__list');
   let editedTodoItem;
 
-  todoList.addEventListener('click', function (event) {
+  document.addEventListener('click', function (event) {
     if (event.target.classList.contains('icon-edit')) {
       // 編集モーダルを表示
       const modalEdit = document.querySelector('.modal_edit');
