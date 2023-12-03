@@ -85,6 +85,7 @@ export function AddTodo() {
       }
     });
   });
+
   // TODOに打ち消し線を追加する
   const checkboxItem = document.querySelectorAll('.todo__list__item .checkbox');
   checkboxItem.forEach((checkbox) => {
@@ -168,4 +169,18 @@ export function AddTodo() {
     }
     return true;
   }
+
+  /* --------------------------------------
+  　　　　　　TODO　削除
+-------------------------------------- */
+  const todoItems = document.querySelectorAll('.todo__list__item');
+  todoItems.forEach((todoItem) => {
+    const deleteBtn = todoItem.querySelector('.icon-trash');
+
+    deleteBtn.addEventListener('click', () => {
+      // クリックしたボタンに最も近い.todo__list__itemを取得
+      const todoItemToDelete = deleteBtn.closest('.todo__list__item');
+      todoItemToDelete.remove();
+    });
+  });
 }
