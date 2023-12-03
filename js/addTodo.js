@@ -55,7 +55,9 @@ export function AddTodo() {
       if (item.value.trim() === '') {
         createError(item, 'ERROR：入力してください');
         haveError = true;
-      } else if (item.value.length > maxlength) {
+      }
+      // 文字数の検証
+      else if (item.value.length > maxlength) {
         createError(item, 'ERROR：' + maxlength + '文字以内で入力してください');
         haveError = true;
       } else {
@@ -87,50 +89,64 @@ export function AddTodo() {
   /* --------------------------------------
   　　　　　　TODO　編集
 -------------------------------------- */
-  const todoList = document.querySelector('.todo__list');
+  const modalEdit = document.querySelector('.modal_edit');
   let editedTodoItem;
 
   document.addEventListener('click', function (event) {
     if (event.target.classList.contains('icon-edit')) {
-      // 編集モーダルを表示
       const modalEdit = document.querySelector('.modal_edit');
-      const editContentUpdate = modalEdit.querySelector('#content-edit');
-      // 現在のTODOを取得
+      const currentContentItem = modalEdit.querySelector('#content-edit');
       const todoValue = event.target.parentElement.previousElementSibling;
-      editContentUpdate.value = todoValue.textContent;
+      // モーダルを表示
+      currentContentItem.value = todoValue.textContent;
       resetErrorModal();
       modalEdit.style.display = 'block';
-      // 編集したTODOを保存
+
+      // 編集した情報を保存
       editedTodoItem = {
         item: todoValue,
         modal: modalEdit,
       };
       const btnEditSave = document.querySelector('.modal__edit__btn');
       btnEditSave.addEventListener('click', function () {
-        const editContentInput = document.querySelector('#content-edit');
-        const editedContent = editContentInput.value.trim();
-        // 入力が空でない場合に保存
-        if (editedContent !== '') {
-          editedTodoItem.item.textContent = editedContent;
+        // 入力を検証
+        if (checkEditInput()) {
+          editedTodoItem.item.textContent = currentContentItem.value.trim();
           editedTodoItem.modal.style.display = 'none';
         }
       });
     }
   });
 
-  const modalEdit = document.querySelector('.modal_edit');
+  // 編集モーダルを閉じる
   const btnEditClose = document.querySelector('.modal__edit__close');
   btnEditClose.addEventListener('click', () => {
-    // 編集モーダルを閉じる
     modalEdit.style.display = 'none';
   });
-  /* -------------------
-  　　　　　　謎↓
-   ------------------- */
   document.addEventListener('click', (e) => {
     // 編集モーダル領域外をクリックしても閉じる
     if (e.target.classList.contains('modal_edit')) {
       modalEdit.style.display = 'none';
     }
   });
+
+  function checkEditInput() {
+    const editContentInput = document.querySelector('#content-edit');
+    const editedContent = editContentInput.value.trim();
+    const errorText = document.querySelector('.modal__edit__error');
+
+    // エラーメッセージを初期化
+    errorText.textContent = '';
+    // 空白の場合の検証
+    if (editedContent === '') {
+      errorText.textContent = 'ERROR：入力してください';
+      return false;
+    }
+    // 文字数の検証
+    if (editedContent.length > 20) {
+      errorText.textContent = 'ERROR：20文字以内で入力してください';
+      return false;
+    }
+    return true;
+  }
 }

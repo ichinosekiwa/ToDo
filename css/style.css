@@ -179,7 +179,8 @@ input[type='checkbox'] {
   margin: 0 auto;
 }
 
-.error {
+.error,
+.modal__edit__error {
   display: block;
   color: red;
   font-size: 12px;
