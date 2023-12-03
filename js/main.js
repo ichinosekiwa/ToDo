@@ -1,4 +1,3 @@
-// Add Todo
 import { AddTodo } from './addTodo.js';
 
 // Todo作成のモーダル　表示非表示
@@ -12,3 +11,9 @@ modal.addEventListener('click', AddTodo);
 // 作成する クリックでTodoを追加
 const createBtn = document.querySelector('.modal__create__btn');
 createBtn.addEventListener('click', AddTodo);
+
+// Todo編集のモーダル　表示非表示
+const todoList = document.querySelector('.todo__list');
+const modalEdit = document.querySelector('.modal_edit');
+todoList.addEventListener('click', AddTodo);
+modalEdit.addEventListener('click', AddTodo);

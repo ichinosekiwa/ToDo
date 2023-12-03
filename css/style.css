@@ -67,24 +67,25 @@ button {
 .todo__list__item-btns {
   position: absolute;
   right: 0;
+  top: 8px;
 }
 .icon-trash,
 .icon-edit {
   border: none;
   background-color: transparent;
   padding: 8px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
-.icon-trash img,
-.icon-edit img {
-  width: 24px;
-  height: 24px;
-}
+
 input[type='checkbox'] {
   margin-right: 8px;
 }
 
 /* モーダル TODO 作成 */
-.modal {
+.modal,
+.modal_edit {
   display: none;
   position: fixed;
   top: 0;
@@ -94,7 +95,8 @@ input[type='checkbox'] {
   background-color: #33333350;
   z-index: 5;
 }
-.modal p {
+.modal p,
+.modal_edit p {
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -102,13 +104,15 @@ input[type='checkbox'] {
   align-items: center;
   margin-bottom: 24px;
 }
-.modal__close {
+.modal__close,
+.modal__edit__close {
   font-size: 24px;
   font-weight: 400;
   transition: 0.3s;
   cursor: pointer;
 }
-.modal__close:hover {
+.modal__close:hover,
+.modal__edit__close:hover {
   color: #33333380;
 }
 .modal__create {
@@ -159,15 +163,15 @@ input[type='checkbox'] {
   font-size: 20px;
   margin-bottom: 1rem;
 }
-.modal label {
+.modal_edit label {
   padding-bottom: 8px;
 }
-.modal input {
+.modal_edit input {
   padding: 5px;
   margin-bottom: 1rem;
   border: 1px solid #33333350;
 }
-.modal .modal__edit__btn {
+.modal_edit .modal__edit__btn {
   padding: 4px;
   width: 100px;
   border: none;
@@ -175,8 +179,27 @@ input[type='checkbox'] {
   margin: 0 auto;
 }
 
-.error {
+.error,
+.modal__edit__error {
   display: block;
   color: red;
   font-size: 12px;
+}
+.modal__edit {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 1rem 1.25rem;
+  max-width: 400px;
+  width: 100%;
+  animation-name: modal;
+  animation-duration: 0.8s;
+}
+@keyframes modal {
+  from {
+    transform: translateY(-100%);
+    transform: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

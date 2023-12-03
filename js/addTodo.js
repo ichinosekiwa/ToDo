@@ -1,5 +1,7 @@
 export function AddTodo() {
-  // modalの表示・非表示
+  /* --------------------------------------
+  　　　　　　TODO　作成
+-------------------------------------- */
   const btnOpen = document.querySelector('.btn__add');
   const btnClose = document.querySelector('.modal__close');
   const modal = document.querySelector('.modal');
@@ -53,7 +55,9 @@ export function AddTodo() {
       if (item.value.trim() === '') {
         createError(item, 'ERROR：入力してください');
         haveError = true;
-      } else if (item.value.length > maxlength) {
+      }
+      // 文字数の検証
+      else if (item.value.length > maxlength) {
         createError(item, 'ERROR：' + maxlength + '文字以内で入力してください');
         haveError = true;
       } else {
@@ -67,10 +71,11 @@ export function AddTodo() {
       <input id="checkbox" class="checkbox" type="checkbox">
       <label for="checkbox">${addTodoItem.value}</label>
       <div class="todo__list__item-btns">
-        <button class="icon-edit"><img src="image/pen.png"></button>
-        <button class="icon-trash"><img src="image/trash.png"></button>
+        <img class="icon-edit" src="image/pen.png">
+        <img class="icon-trash" src="image/trash.png">
       </div>
     `;
+
         // 親要素<ul>に入力したTodoを追加
         const todoList = document.querySelector('.todo__list');
         todoList.appendChild(todoItem);
@@ -80,4 +85,68 @@ export function AddTodo() {
       }
     });
   });
+
+  /* --------------------------------------
+  　　　　　　TODO　編集
+-------------------------------------- */
+  const modalEdit = document.querySelector('.modal_edit');
+  let editedTodoItem;
+
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('icon-edit')) {
+      const modalEdit = document.querySelector('.modal_edit');
+      const currentContentItem = modalEdit.querySelector('#content-edit');
+      const todoValue = event.target.parentElement.previousElementSibling;
+      // モーダルを表示
+      currentContentItem.value = todoValue.textContent;
+      resetErrorModal();
+      modalEdit.style.display = 'block';
+
+      // 編集した情報を保存
+      editedTodoItem = {
+        item: todoValue,
+        modal: modalEdit,
+      };
+      const btnEditSave = document.querySelector('.modal__edit__btn');
+      btnEditSave.addEventListener('click', function () {
+        // 入力を検証
+        if (checkEditInput()) {
+          editedTodoItem.item.textContent = currentContentItem.value.trim();
+          editedTodoItem.modal.style.display = 'none';
+        }
+      });
+    }
+  });
+
+  // 編集モーダルを閉じる
+  const btnEditClose = document.querySelector('.modal__edit__close');
+  btnEditClose.addEventListener('click', () => {
+    modalEdit.style.display = 'none';
+  });
+  document.addEventListener('click', (e) => {
+    // 編集モーダル領域外をクリックしても閉じる
+    if (e.target.classList.contains('modal_edit')) {
+      modalEdit.style.display = 'none';
+    }
+  });
+
+  function checkEditInput() {
+    const editContentInput = document.querySelector('#content-edit');
+    const editedContent = editContentInput.value.trim();
+    const errorText = document.querySelector('.modal__edit__error');
+
+    // エラーメッセージを初期化
+    errorText.textContent = '';
+    // 空白の場合の検証
+    if (editedContent === '') {
+      errorText.textContent = 'ERROR：入力してください';
+      return false;
+    }
+    // 文字数の検証
+    if (editedContent.length > 20) {
+      errorText.textContent = 'ERROR：20文字以内で入力してください';
+      return false;
+    }
+    return true;
+  }
 }

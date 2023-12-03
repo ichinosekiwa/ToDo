@@ -40,17 +40,19 @@
             </div>
         </div>
         <!-- モーダル TODO 編集 -->
-        <div class="modal-2">
+        <div class="modal_edit">
             <div class="modal__edit">
-                <p class="modal__edit__title">Edit ToDo<span class="modal__close">×</span></p>
+                <p class="modal__edit__title">Edit ToDo<span class="modal__edit__close">×</span></p>
 
                 <div>
                     <label for="content">内容：</label>
                     <input class="edit maxlength" type="text" id="content-edit" name="content" data-maxlength="20"
-                        required placeholder="洗濯をする">
+                        required>
                     <button class="modal__edit__btn">更新する</button>
                 </div>
+                <span class="modal__edit__error"></span>
             </div>
+
         </div>
     </main>
 
