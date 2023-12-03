@@ -85,6 +85,25 @@ export function AddTodo() {
       }
     });
   });
+  // TODOに打ち消し線を追加する
+  const checkboxItem = document.querySelectorAll('.todo__list__item .checkbox');
+  checkboxItem.forEach((checkbox) => {
+    // チェックボックスで<input>に打ち消し線を引く
+    checkbox.addEventListener('change', function () {
+      // チェックボックスの次の要素を取得
+      const todoLabel = this.nextElementSibling;
+      toggleStrikeThrough(todoLabel, this.checked);
+    });
+  });
+  function toggleStrikeThrough(label, checked) {
+    if (checked) {
+      // 打ち消し線を追加
+      label.style.textDecoration = 'line-through';
+    } else {
+      // 打ち消し線を削除
+      label.style.textDecoration = 'none';
+    }
+  }
 
   /* --------------------------------------
   　　　　　　TODO　編集
