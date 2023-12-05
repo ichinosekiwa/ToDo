@@ -91,8 +91,9 @@ export function AddTodo() {
   checkboxItem.forEach((checkbox) => {
     // チェックボックスで<input>に打ち消し線を引く
     checkbox.addEventListener('change', function () {
-      // チェックボックスの次の要素を取得
-      const todoLabel = this.nextElementSibling;
+      // チェックボックスが所属する親要素を取得
+      const todoItem = this.closest('.todo__list__item');
+      const todoLabel = todoItem.querySelector('label');
       toggleStrikeThrough(todoLabel, this.checked);
     });
   });
