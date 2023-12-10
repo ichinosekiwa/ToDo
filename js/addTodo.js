@@ -65,17 +65,18 @@ export function AddTodo() {
       }
 
       if (!haveError && addTodoItem.value.trim() !== '') {
+        // ユニークなidを充てる
+        const todoListId = 'checkbox' + Date.now();
         const todoItem = document.createElement('li');
         todoItem.classList.add('todo__list__item');
         todoItem.innerHTML = `
-      <input id="checkbox" class="checkbox" type="checkbox">
-      <label for="checkbox">${addTodoItem.value}</label>
+      <input id="${todoListId}" class="checkbox" type="checkbox">
+      <label for="${todoListId}">${addTodoItem.value}</label>
       <div class="todo__list__item-btns">
         <img class="icon-edit" src="image/pen.png">
         <img class="icon-trash" src="image/trash.png">
       </div>
     `;
-
         // 親要素<ul>に入力したTodoを追加
         const todoList = document.querySelector('.todo__list');
         todoList.appendChild(todoItem);
