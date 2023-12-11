@@ -65,17 +65,18 @@ export function AddTodo() {
       }
 
       if (!haveError && addTodoItem.value.trim() !== '') {
+        // ユニークなidを充てる
+        const todoListId = 'checkbox' + Date.now();
         const todoItem = document.createElement('li');
         todoItem.classList.add('todo__list__item');
         todoItem.innerHTML = `
-      <input id="checkbox" class="checkbox" type="checkbox">
-      <label for="checkbox">${addTodoItem.value}</label>
+      <input id="${todoListId}" class="checkbox" type="checkbox">
+      <label for="${todoListId}">${addTodoItem.value}</label>
       <div class="todo__list__item-btns">
         <img class="icon-edit" src="image/pen.png">
         <img class="icon-trash" src="image/trash.png">
       </div>
     `;
-
         // 親要素<ul>に入力したTodoを追加
         const todoList = document.querySelector('.todo__list');
         todoList.appendChild(todoItem);
@@ -85,6 +86,27 @@ export function AddTodo() {
       }
     });
   });
+
+  // TODOに打ち消し線を追加する
+  const checkboxItem = document.querySelectorAll('.todo__list__item .checkbox');
+  checkboxItem.forEach((checkbox) => {
+    // チェックボックスで<input>に打ち消し線を引く
+    checkbox.addEventListener('change', function () {
+      // チェックボックスが所属する親要素を取得
+      const todoItem = this.closest('.todo__list__item');
+      const todoLabel = todoItem.querySelector('label');
+      toggleStrikeThrough(todoLabel, this.checked);
+    });
+  });
+  function toggleStrikeThrough(label, checked) {
+    if (checked) {
+      // 打ち消し線を追加
+      label.style.textDecoration = 'line-through';
+    } else {
+      // 打ち消し線を削除
+      label.style.textDecoration = 'none';
+    }
+  }
 
   /* --------------------------------------
   　　　　　　TODO　編集
@@ -149,4 +171,18 @@ export function AddTodo() {
     }
     return true;
   }
+
+  /* --------------------------------------
+  　　　　　　TODO　削除
+-------------------------------------- */
+  const todoItems = document.querySelectorAll('.todo__list__item');
+  todoItems.forEach((todoItem) => {
+    const deleteBtn = todoItem.querySelector('.icon-trash');
+
+    deleteBtn.addEventListener('click', () => {
+      // クリックしたボタンに最も近い.todo__list__itemを取得
+      const todoItemToDelete = deleteBtn.closest('.todo__list__item');
+      todoItemToDelete.remove();
+    });
+  });
 }
